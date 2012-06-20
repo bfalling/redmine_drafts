@@ -1,5 +1,6 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resources :drafts, :only => [:create, :destroy],
-                         :collection => {:autosave => :post},
-                         :member => {:restore => :put}
+RedmineApp::Application.routes.draw do
+  resources :drafts, :only => [:create, :destroy] do
+    put 'restore', :on => :member
+    post 'autosave', :on => :collection
+  end
 end
